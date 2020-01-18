@@ -1,40 +1,19 @@
-import React from 'react';
 import About from './src/pages/About'
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  SectionList,
-  FlatList,
-  Button,
-  StatusBar,
-} from 'react-native';
+import Faves from './src/pages/Faves'
+import { YellowBox } from 'react-native'
 
-import { AppRegistry } from 'react-native';
-import { ApolloClient } from 'apollo-client';
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-const cache = new InMemoryCache();
-const link = new HttpLink({
-  uri: 'https://r10.academy.red/graphql/'
+ // TODO: Remove when fixed
+ YellowBox.ignoreWarnings([
+  'VirtualizedLists should never be nested',
+  'Remote debugger is in a background tab which may cause apps to perform slowly. Fix this by foregrounding the tab (or opening it in a separate window).'
+])
+
+const App = createBottomTabNavigator({
+  About,
+  Faves,
 });
 
-const client = new ApolloClient({
-  cache,
-  link
-});
-
-const App = () => {
-  return (
-    <>
-      <About client={client}/>
-    </>
-  )
-}
-
-export default App;
+export default createAppContainer(App);

@@ -27,10 +27,10 @@ export default styles = {
     fontFamily: 'Montserrat-Regular',
   },
   list: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: 'Montserrat-Regular',
     marginTop: 22,
-    color: '#9963EA',
+    color: '#9963EA'
   },
   logoView: {
     alignItems: 'center',
@@ -47,5 +47,10 @@ export default styles = {
   },
   content: {
     fontSize: 24,
+  },
+  buttomLine: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#ededed',
+    height: 25
   }
 }
