@@ -1,7 +1,4 @@
 export default styles = {
-  headerView: {
-    height: 100
-  },
   title: {
     fontSize: 30,
     // marginBottom: 5,
