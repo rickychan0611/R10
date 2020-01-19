@@ -10,3 +10,15 @@ export const GET_ALL_CONDUCTS = gql`
     }
   }
 `;
+
+export const GET_ALL_SESSIONS =  gql`
+query {
+  allSessions {
+    id
+    description
+    startTime
+    location
+    title
+  }
+}
+`;

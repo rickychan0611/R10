@@ -6,7 +6,7 @@ import {
   Image,
   FlatList
 } from 'react-native';
-
+import Schedules from './Schedules'
 import { ApolloProvider } from '@apollo/react-hooks';
 import client from '../../apollo'
 import TitleHeader from '../../components/TitleHeader'
@@ -15,14 +15,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 
-export default FavesContainer = () => {
+export default ScheduleContainer = () => {
   return (
     <ApolloProvider client={client}>
       <TitleHeader title="Schedule" />
       <ScrollView style={styles.FavesContainer}>
-        <View >
-
-          <View style={styles.timeView}>
+          <Schedules />
+          {/* <View style={styles.timeView}>
             <Text style={styles.time}>
               9:00PM
             </Text>
@@ -39,9 +38,8 @@ export default FavesContainer = () => {
             <View style={styles.HeartContainer}>
               <FontAwesomeIcon icon={faHeart} style={styles.Heart} size={ 20 } />
             </View>
-          </View>
+          </View> */}
 
-        </View>
       </ScrollView>
     </ApolloProvider>
   )

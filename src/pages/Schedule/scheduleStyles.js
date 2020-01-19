@@ -1,6 +1,6 @@
 export default styles = {
   FavesContainer: {
-    flex: 1,
+    flex: 1
   },
   timeView: {
     height: 36,
@@ -18,7 +18,9 @@ export default styles = {
     alignContent: 'space-between',
     paddingLeft: 20,
     paddingRight: 20,
-    paddingTop: 20
+    paddingTop: 20,
+    borderBottomWidth: 2,
+    borderBottomColor: '#ededed',
   },
   FavesContent: {
     fontSize: 20,
@@ -35,7 +37,7 @@ export default styles = {
   },
   HeartContainer: {
     justifyContent: 'flex-end',
-    paddingBottom: 15
+    paddingBottom: 20
   },
   Heart: {
     fontSize: 30,
