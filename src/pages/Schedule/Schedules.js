@@ -60,7 +60,7 @@ const Schedules = ({ navigation }) => {
   if (error) console.log('error: ' + error)
   if (loading) return <Text>Loading ...</Text>;
   if (!loading && data) {
-    // console.log(JSON.stringify(data))
+    console.log('ssss' + JSON.stringify(data))
 
 
     let timeArr = []

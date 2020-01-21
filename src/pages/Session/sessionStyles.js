@@ -1,4 +1,11 @@
 export default styles = {
+  SessionContentContainer: {
+    flex: 1,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingTop: 20,
+    backgroundColor: 'white'
+  },
   FavesContainer: {
     flex: 1
   },
@@ -9,38 +16,77 @@ export default styles = {
     paddingLeft: 20
   },
   time: {
-    fontSize: 18,
+    fontSize: 22,
     fontFamily: 'Montserrat-regular',
+    color: "red"
   },
-  FavesContentContainer: {
+  locationFaves: {
     flex: 1,
     flexDirection: 'row',
-    alignContent: 'space-between',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingTop: 20,
-    borderBottomWidth: 2,
-    borderBottomColor: '#ededed',
+    justifyContent: 'space-between',
   },
-  FavesContent: {
-    fontSize: 20,
+  title: {
+    fontSize: 30,
     flex:2,
     fontFamily: 'Montserrat-regular',
-    marginBottom: 10
+    marginBottom: 20
   },
-  FavesLocation: {
-    fontSize: 18,
+  location: {
+    fontSize: 22,
     flex:2,
     color: '#9c9c9c',
     fontFamily: 'Montserrat-regular',
-    marginBottom: 8
+    marginBottom: 18
   },
   HeartContainer: {
-    justifyContent: 'flex-end',
     paddingBottom: 20
   },
   Heart: {
     fontSize: 30,
     color: 'red'
+  },
+  p: {
+    fontSize: 24,
+    marginTop: 22,
+    marginBottom: 30,
+    fontFamily: 'Montserrat-Light',
+    lineHeight: 38,
+  },
+  speakView: {
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+  border: {
+    borderBottomWidth: 3,
+    borderBottomColor: '#ededed',
+    height: 30
+  },
+  speaker: {
+    fontSize: 24,
+    marginLeft: 10,
+    justifyContent: 'center',
+    fontFamily: 'Montserrat-regular',
+  },
+  removeButtonContainer: {
+    flex: 1,
+    alignItems:'center',
+    justifyContent:'center',
+    margin: 30
+  },
+  gradient: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems:'center',
+    borderRadius: 30
+  },
+  button: {
+    width: '80%',
+    height: 60,
+  },
+  text: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: 'Montserrat-regular',
   }
 }

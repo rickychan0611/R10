@@ -1,6 +1,7 @@
 export default styles = {
   FavesContainer: {
     flex: 1
+
   },
   timeView: {
     height: 36,
@@ -13,6 +14,7 @@ export default styles = {
     fontFamily: 'Montserrat-regular',
   },
   FavesContentContainer: {
+    backgroundColor: 'white',
     flex: 1,
     flexDirection: 'row',
     alignContent: 'space-between',

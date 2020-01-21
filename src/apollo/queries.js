@@ -19,6 +19,25 @@ query {
     startTime
     location
     title
+    speaker { 
+      id
+      bio
+      image
+      name
+      url
+    }
+  }
+}
+`;
+
+export const GET_SPEAKER =  gql`
+query {
+  allSessions {
+    id
+    description
+    startTime
+    location
+    title
   }
 }
 `;
