@@ -1,51 +1,50 @@
 import React, { useState, useCallback } from 'react';
-import { View, Text, SectionList, TouchableOpacity } from 'react-native';
+import { View, Text, SectionList, Button, TouchableOpacity } from 'react-native';
 import styles from './scheduleStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ALL_SESSIONS } from '../../apollo/queries'
+import { useNavigation, useNavigationParam } from 'react-navigation-hooks'
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { withNavigation } from 'react-navigation';
 
-
-const timeFormat = ( time ) => {
+const timeFormat = (time) => {
   return (
     new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
   )
 }
 
-const Item = ({ title, id, location, description, startTime, onSelect, selected }) => { //these are props pass from <Item>
+const Item = ({ navigation, item, onSelect, selected }) => { //these are props pass from <Item>
+  // const { navigate } = useNavigation()
   return (
-    // <TouchableOpacity
-    //   onPress={ () => onSelect(id) } //return true or false for selected (props)
-    //   >
     <>
-      {/* <View style={styles.timeView}>
-        <Text style={styles.time}>
-          {timeFormat}
-        </Text>
-      </View> */}
-      <View style={styles.FavesContentContainer}>
-        <View style={styles.FavesContent}>
-          <Text style={styles.FavesContent}>
-            {title}
-          </Text>
-          <Text style={styles.FavesLocation}>
-            {location}
-          </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Session', { 'item': item })}
+      >
+        <View style={styles.FavesContentContainer}>
+          <View style={styles.FavesContent}>
+
+            <Text style={styles.FavesContent}>
+              {item.title}
+            </Text>
+            <Text style={styles.FavesLocation}>
+              {item.location}
+            </Text>
+          </View>
+          <View style={styles.HeartContainer}>
+            <FontAwesomeIcon icon={faHeart} style={styles.Heart} size={20} />
+          </View>
         </View>
-        <View style={styles.HeartContainer}>
-          <FontAwesomeIcon icon={faHeart} style={styles.Heart} size={20} />
-        </View>
-      </View>
+      </TouchableOpacity>
     </>
-    // {selected? <Text style={styles.p}>{description}</Text> : null}
-    // </TouchableOpacity>
   )
 }
 
-export default Schedules = () => {
+const Schedules = ({ navigation }) => {
   const [selected, setSelected] = useState(new Map())
-
+  console.log('!!!!' + JSON.stringify(navigation))
   const onSelect = useCallback(id => {
     const newSelected = new Map(selected) //selected is the state and is a map = (id, boolean)
     //selected is a map, selected.get(id) returns the value of id key, set id is important
@@ -65,7 +64,7 @@ export default Schedules = () => {
 
 
     let timeArr = []
-    for (let i in data.allSessions){
+    for (let i in data.allSessions) {
       timeArr.push(data.allSessions[i].startTime)
     }
     const setUniqueTime = new Set(timeArr)
@@ -75,19 +74,19 @@ export default Schedules = () => {
     let obj = {}
     let result = []
     let formattedData = []
-    for (let j in UniqueTimeArr){
+    for (let j in UniqueTimeArr) {
       obj = {}
       result = data.allSessions.filter(item => {
         return (
-        item.startTime == UniqueTimeArr[j]
+          item.startTime == UniqueTimeArr[j]
         )
       })
-    obj.title = UniqueTimeArr[j]
-    obj.data = result
-    formattedData.push(obj)
-  }
-  console.log(formattedData)
-
+      obj.title = UniqueTimeArr[j]
+      obj.data = result
+      formattedData.push(obj)
+    }
+    // console.log('!!!' + navigation)
+    // console.log('ID', navigation.getParam('id'))
     return (
       <>
         <SectionList
@@ -101,11 +100,8 @@ export default Schedules = () => {
           )}
           renderItem={({ item }) => (
             <Item
-              id={item.id}
-              title={item.title}
-              description={item.description}
-              startTime={item.startTime}
-              location={item.location}
+              navigation={navigation}
+              item={item}
               selected={!!selected.get(item.id)}
               onSelect={onSelect}
             >
@@ -119,3 +115,4 @@ export default Schedules = () => {
     )
   }
 }
+export default withNavigation(Schedules)
