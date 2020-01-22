@@ -1,3 +1,4 @@
+import React from "react";
 import About from './src/pages/About'
 import Faves from './src/pages/Faves'
 import Schedule from './src/pages/Schedule'
@@ -8,6 +9,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 
+import FavesProvider from './src/context/FavesContext'
 
  // TODO: Remove when fixed
  YellowBox.ignoreWarnings([
@@ -37,7 +39,11 @@ const BottomNav = createBottomTabNavigator({
 StatusBar.setBarStyle('light-content', true)
 );
 
-const App = createAppContainer(BottomNav);
+const AppNavigation = createAppContainer(BottomNav);
+
+const App = () => <FavesProvider>
+    <AppNavigation />
+  </FavesProvider>
 
 export default App
 

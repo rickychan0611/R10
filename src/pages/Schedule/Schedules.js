@@ -1,8 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext, useEffect } from 'react';
+import { FavesContext } from '../../context/FavesContext'
+
 import { View, Text, SectionList, Button, TouchableOpacity } from 'react-native';
 import styles from './scheduleStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
-import { faHeart } from '@fortawesome/free-regular-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useQuery } from '@apollo/react-hooks';
 import { GET_ALL_SESSIONS } from '../../apollo/queries'
 import { useNavigation, useNavigationParam } from 'react-navigation-hooks'
@@ -18,10 +20,25 @@ const timeFormat = (time) => {
 
 const Item = ({ navigation, item, onSelect, selected }) => { //these are props pass from <Item>
   // const { navigate } = useNavigation()
+  const [faveIds, setFaveIds] = useContext(FavesContext)
+  const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    if (faveIds.indexOf(item.id) != -1){
+      setShow(true)
+    } else {
+      setShow(false)
+    }
+  });
+
   return (
     <>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Session', { 'item': item })}
+        onPress={() => {
+          if (item.title == "Lunch" || item.title == "After Party") {
+            return 
+          } else {
+          navigation.navigate('Session', { 'item': item })}}}
       >
         <View style={styles.FavesContentContainer}>
           <View style={styles.FavesContent}>
@@ -34,7 +51,9 @@ const Item = ({ navigation, item, onSelect, selected }) => { //these are props p
             </Text>
           </View>
           <View style={styles.HeartContainer}>
+            {show ?
             <FontAwesomeIcon icon={faHeart} style={styles.Heart} size={20} />
+           : null}
           </View>
         </View>
       </TouchableOpacity>
@@ -43,8 +62,7 @@ const Item = ({ navigation, item, onSelect, selected }) => { //these are props p
 }
 
 const Schedules = ({ navigation }) => {
-  const [selected, setSelected] = useState(new Map())
-  console.log('!!!!' + JSON.stringify(navigation))
+  const [selected, setSelected] = useState(new Map())  
   const onSelect = useCallback(id => {
     const newSelected = new Map(selected) //selected is the state and is a map = (id, boolean)
     //selected is a map, selected.get(id) returns the value of id key, set id is important
@@ -60,9 +78,6 @@ const Schedules = ({ navigation }) => {
   if (error) console.log('error: ' + error)
   if (loading) return <Text>Loading ...</Text>;
   if (!loading && data) {
-    console.log('ssss' + JSON.stringify(data))
-
-
     let timeArr = []
     for (let i in data.allSessions) {
       timeArr.push(data.allSessions[i].startTime)

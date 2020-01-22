@@ -1,8 +1,10 @@
-import React, { useState, useCallback } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image, TouchableHighlight, Modal } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { FavesContext } from '../../context/FavesContext'
+import { View, Text, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
 import styles from './sessionStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as emptyHeart } from '@fortawesome/free-regular-svg-icons'
 import { withNavigation } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient'
 import Speaker from '../Speaker'
@@ -12,32 +14,20 @@ const timeFormat = (time) => {
     new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
   )
 }
-// const openModal = () => {
-//   setModal(true)
-// }
-
 
 const Session = ({ navigation }) => {
   const item = navigation.getParam('item')
   const [modal, setModal] = useState(false)
+  const [faveIds, setFaveIds] = useContext(FavesContext)
   
   const closeModal = (props) => {
     setModal(false)
     console.log('close' + props)
   }
-  // const { loading, error, data } = 
-  //   useQuery(GET_SPEAKER, { variables: { id: "english" }});
-  // if (error) console.log('error: ' + error)
-  // if (loading) return <Text>Loading ...</Text>;
-  // if (!loading && data) {
 
-  // }
-
-  // {JSON.stringify(item.location)}
   return (
     <>
       <ScrollView style={styles.SessionContentContainer}>
-
         <View style={styles.locationFaves}>
 
           <View style={styles.locationView}>
@@ -46,9 +36,22 @@ const Session = ({ navigation }) => {
             </Text>
           </View>
 
+          <TouchableOpacity
+            onPress={() => {
+              // setFaveIds([])
+              if (faveIds.indexOf(item.id) == -1 ) {
+              setFaveIds(faveIds => ([...faveIds, item.id]))
+            }
+          }}
+          >
+
           <View style={styles.HeartContainer}>
+            {(faveIds.indexOf(item.id) == -1 )?
+            <FontAwesomeIcon icon={emptyHeart} style={styles.Heart} size={20} /> :
             <FontAwesomeIcon icon={faHeart} style={styles.Heart} size={20} />
+          }
           </View>
+          </TouchableOpacity>
 
         </View>
 
@@ -92,7 +95,16 @@ const Session = ({ navigation }) => {
         <View style={styles.border}></View>
 
         <View style={styles.removeButtonContainer}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button}
+          onPress={()=>{
+            let tempArr = faveIds
+            tempArr.map((id, index)=>{
+            if (id === item.id){
+              tempArr.splice(index,1)
+              setFaveIds([])
+              setFaveIds([...tempArr])
+            }
+          })}}>
             <LinearGradient colors={['#7B7DD1', '#874AED']}
               start={{ x: 1, y: 0 }}
               end={{ x: 0, y: 1 }}
