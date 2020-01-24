@@ -1,13 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
 
-addFave = async () => {
+const setFave = async (obj) => {
   try {
-    await AsyncStorage.setItem('FavesSessionIds', 'cjh2j37mo163p01221qpcklry')
+    let IdArr = {}
+    IdArr.value = obj
+    await AsyncStorage.setItem('AS_faveIds', JSON.stringify(IdArr))
   } catch (e) {
-    // saving error
+    console.log(e)
   }
-  console.log('Done.')
 }
 
-addFave()
-
+export default{
+  setFave
+}

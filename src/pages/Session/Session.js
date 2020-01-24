@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FavesContext } from '../../context/FavesContext'
 import { View, Text, TouchableOpacity, ScrollView, Image, Modal } from 'react-native';
 import styles from './sessionStyles'
@@ -8,6 +8,7 @@ import { faHeart as emptyHeart } from '@fortawesome/free-regular-svg-icons'
 import { withNavigation } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient'
 import Speaker from '../Speaker'
+import models from '../../config/models';
 
 const timeFormat = (time) => {
   return (
@@ -40,8 +41,9 @@ const Session = ({ navigation }) => {
             onPress={() => {
               // setFaveIds([])
               if (faveIds.indexOf(item.id) == -1 ) {
-              setFaveIds(faveIds => ([...faveIds, item.id]))
+              setFaveIds([...faveIds, item.id])
             }
+            models.setFave([...faveIds, item.id])
           }}
           >
 
@@ -103,6 +105,7 @@ const Session = ({ navigation }) => {
               tempArr.splice(index,1)
               setFaveIds([])
               setFaveIds([...tempArr])
+              models.setFave([...tempArr])
             }
           })}}>
             <LinearGradient colors={['#7B7DD1', '#874AED']}
