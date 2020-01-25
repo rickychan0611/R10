@@ -3,6 +3,7 @@ import About from './src/pages/About'
 import Faves from './src/pages/Faves'
 import Schedule from './src/pages/Schedule'
 import Session from './src/pages/Session'
+import Map from './src/pages/Map'
 
 import { YellowBox, StatusBar, Text } from 'react-native'
 import { createAppContainer } from 'react-navigation';
@@ -16,7 +17,8 @@ import FavesProvider from './src/context/FavesContext'
  // TODO: Remove when fixed
  YellowBox.ignoreWarnings([
   'VirtualizedLists should never be nested',
-  'Remote debugger is in a background tab which may cause apps to perform slowly. Fix this by foregrounding the tab (or opening it in a separate window).'
+  'Remote debugger is in a background tab which may cause apps to perform slowly. Fix this by foregrounding the tab (or opening it in a separate window).',
+  'Calling bridge.image.Loader '
 ])
 
 const ScheduleStack = createStackNavigator(
@@ -31,12 +33,12 @@ const ScheduleStack = createStackNavigator(
 );
 
 const BottomNav = createBottomTabNavigator({
-  Faves,
+  Map,
   Schedule: {
     screen: ScheduleStack
   },
-  About,
-  Session
+  Faves,
+  About
 },
 StatusBar.setBarStyle('light-content', true)
 );
