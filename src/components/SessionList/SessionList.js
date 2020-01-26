@@ -2,7 +2,7 @@ import React, { useState, useCallback, useContext, useEffect } from 'react';
 import { FavesContext } from '../../context/FavesContext'
 
 import { View, Text, SectionList, TouchableOpacity } from 'react-native';
-import styles from '../../pages/Schedule/scheduleStyles'
+import styles from './sessionListStyles'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { withNavigation } from 'react-navigation';

@@ -10,7 +10,7 @@ export default styles = {
   },
   time: {
     fontSize: 18,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
   },
   FavesContentContainer: {
     flex: 1,
@@ -23,14 +23,14 @@ export default styles = {
   FavesContent: {
     fontSize: 20,
     flex:2,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
     marginBottom: 10
   },
   FavesLocation: {
     fontSize: 18,
     flex:2,
     color: '#9c9c9c',
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
     marginBottom: 8
   },
   HeartContainer: {

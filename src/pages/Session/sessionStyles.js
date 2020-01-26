@@ -17,7 +17,7 @@ export default styles = {
   },
   time: {
     fontSize: 22,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
     color: "red"
   },
   locationFaves: {
@@ -28,14 +28,14 @@ export default styles = {
   title: {
     fontSize: 30,
     flex:2,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
     marginBottom: 20
   },
   location: {
     fontSize: 22,
     flex:2,
     color: '#9c9c9c',
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
     marginBottom: 18
   },
   HeartContainer: {
@@ -66,7 +66,7 @@ export default styles = {
     fontSize: 24,
     marginLeft: 10,
     justifyContent: 'center',
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
   },
   removeButtonContainer: {
     flex: 1,
@@ -87,6 +87,6 @@ export default styles = {
   text: {
     color: 'white',
     fontSize: 20,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
   }
 }

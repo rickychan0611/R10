@@ -14,7 +14,7 @@ export default styles = {
   title: {
     alignItems: 'center',
     fontSize: 22,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
     color: 'white'
   },
   closeView: {
@@ -39,7 +39,7 @@ export default styles = {
     fontSize: 32,
     marginTop: 20,
     marginBottom: 20,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
   },
   p: {
     fontSize: 16,
@@ -66,6 +66,6 @@ export default styles = {
   text: {
     color: 'white',
     fontSize: 16,
-    fontFamily: 'Montserrat-regular',
+    fontFamily: 'Montserrat-Regular',
   }
 }

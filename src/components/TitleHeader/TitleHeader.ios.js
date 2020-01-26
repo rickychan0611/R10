@@ -1,7 +1,7 @@
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient'
 import { Text, View, Button, TouchableOpacity } from 'react-native';
-import styles from './headerStyles'
+import styles from './iosHeaderStyles'
 import { withNavigation } from 'react-navigation';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'

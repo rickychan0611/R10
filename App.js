@@ -5,13 +5,14 @@ import Schedule from './src/pages/Schedule'
 import Session from './src/pages/Session'
 import Map from './src/pages/Map'
 
-import { YellowBox, StatusBar, Text } from 'react-native'
+import { YellowBox, StatusBar, Platform, StyleSheet } from 'react-native'
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import 'react-native-gesture-handler';
 
-import AsyncStorage from '@react-native-community/async-storage';
-import { FavesContext } from './src/context/FavesContext'
+
 import FavesProvider from './src/context/FavesContext'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -35,11 +36,40 @@ const ScheduleStack = createStackNavigator(
     }
 );
 
-const IconComponent = props => {
-  return(
-    <FontAwesomeIcon icon={faHeart} style={styles.Heart} size={20} />
-  )
-}
+const DrawerNav = createDrawerNavigator({
+  Schedule: {
+    screen: ScheduleStack,
+    navigationOptions: {
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesomeIcon icon={faCalendarAlt} color={tintColor} size={30} />
+        ),
+      },
+    },
+    Map:{
+      screen: Map,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesomeIcon icon={faMap} color={tintColor} size={30} />
+        ),
+      },
+    },
+    Faves:{
+      screen: Faves,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesomeIcon icon={faHeart} color={tintColor} size={30} />
+        ),
+      },
+    },
+    About: {
+      screen : About,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <FontAwesomeIcon icon={faExclamationCircle} color={tintColor} size={30} />
+        ),
+      },
+    }
+})
 
 const BottomNav = createBottomTabNavigator({
   Schedule: {
@@ -98,7 +128,11 @@ const BottomNav = createBottomTabNavigator({
 StatusBar.setBarStyle('light-content', true)
 );
 
-const AppNavigation = createAppContainer(BottomNav);
+const AppNavigation = Platform.select({
+  ios: () => createAppContainer(BottomNav),
+  android: () => createAppContainer(DrawerNav),
+})();
+
 const App = () => {
 return(
     <FavesProvider>
