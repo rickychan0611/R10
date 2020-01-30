@@ -7,11 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { withNavigation } from 'react-navigation';
 
-const timeFormat = (time) => {
-  return (
-    new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
-  )
-}
+import timeFormat from '../../shared/timeFormat'
 
 const Item = ({ navigation, item, onSelect, selected }) => { //these are props pass from <Item>
   // const { navigate } = useNavigation()

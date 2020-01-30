@@ -9,12 +9,7 @@ import { withNavigation } from 'react-navigation';
 import LinearGradient from 'react-native-linear-gradient'
 import Speaker from '../Speaker'
 import models from '../../config/models';
-
-const timeFormat = (time) => {
-  return (
-    new Date(time).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
-  )
-}
+import timeFormat from '../../shared/timeFormat'
 
 const Session = ({ navigation }) => {
   const item = navigation.getParam('item')
@@ -23,7 +18,6 @@ const Session = ({ navigation }) => {
   
   const closeModal = (props) => {
     setModal(false)
-    console.log('close' + props)
   }
 
   return (

@@ -10,7 +10,6 @@ import { color } from 'react-native-reanimated';
 const Speaker = ( {speaker, closeModal}) => {
   
   const onClose = () => {
-    console.log('here')
     closeModal(false)
   }
 

@@ -6,7 +6,7 @@ export default styles = {
   },
   p: {
     fontSize: 20,
-    marginTop: 24,
+    marginTop: 25,
     marginBottom: 24,
     fontFamily: 'Montserrat-Light',
     lineHeight: 30,
@@ -26,7 +26,6 @@ export default styles = {
   list: {
     fontSize: 24,
     fontFamily: 'Montserrat-Regular',
-    marginTop: 22,
     color: '#9963EA'
   },
   logoView: {

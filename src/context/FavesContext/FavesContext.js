@@ -27,9 +27,3 @@ const FavesProvider = ({ children }) => {
   )
 }
 export default FavesProvider
-
-
-  // const setFave = (value) => {
-  //   setFavesIds([...faveIds, value])
-  //   console.log('setFave: ' + faveIds)
-  // }

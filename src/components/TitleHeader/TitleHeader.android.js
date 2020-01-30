@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import { faChevronLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 
 const TitleHeader = ({ title, navigation }) => {
-  console.log(navigation)
   return (
     <>
       <LinearGradient

@@ -40,6 +40,7 @@ export default About = () => {
 
           <View style={styles.ConductContent}>
             <Text style={styles.title}>Code of Conduct</Text>
+            {/* <View style={{ height: 20 }}/> */}
             <Conducts />
           </View>
 

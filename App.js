@@ -1,17 +1,17 @@
-import React, {useEffect, useContext} from "react";
+import React, {useEffect} from "react";
 import About from './src/pages/About'
 import Faves from './src/pages/Faves'
 import Schedule from './src/pages/Schedule'
 import Session from './src/pages/Session'
 import Map from './src/pages/Map'
 
-import { YellowBox, StatusBar, Platform, StyleSheet } from 'react-native'
+import { YellowBox, StatusBar, Platform } from 'react-native'
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import 'react-native-gesture-handler';
-
+import SplashScreen from 'react-native-splash-screen'
 
 import FavesProvider from './src/context/FavesContext'
 
@@ -134,8 +134,14 @@ const AppNavigation = Platform.select({
 })();
 
 const App = () => {
+  
+  useEffect(()=>{
+    SplashScreen.hide()
+  },[])
+
 return(
     <FavesProvider>
+      {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
       <AppNavigation />
     </FavesProvider>
   )}
